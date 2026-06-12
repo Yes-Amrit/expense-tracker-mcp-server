@@ -100,6 +100,7 @@ async def summarize(start_date, end_date, category=None):  # Changed: added asyn
             return [dict(zip(cols, r)) for r in await cur.fetchall()]  # Changed: added await
     except Exception as e:
         return {"status": "error", "message": f"Error summarizing expenses: {str(e)}"}
+    
 
 @mcp.resource("expense:///categories", mime_type="application/json")  # Changed: expense:// → expense:///
 def categories():
