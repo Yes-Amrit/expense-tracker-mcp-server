@@ -119,7 +119,6 @@ def categories():
                 "Other"
             ]
         }
-        
         try:
             with open(CATEGORIES_PATH, "r", encoding="utf-8") as f:
                 return f.read()
