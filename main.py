@@ -7,7 +7,7 @@ import tempfile
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # 2. Set the database path right inside your project folder
-DB_PATH = os.path.join(PROJECT_DIR, "expenses.db")
+DB_PATH = os.path.join(tempfile.gettempdir(), "expenses.db")
 CATEGORIES_PATH = os.path.join(PROJECT_DIR, "categories.json")
 
 print(f"Database path: {DB_PATH}")
@@ -130,5 +130,5 @@ def categories():
         return f'{{"error": "Could not load categories: {str(e)}"}}'
 # Start the server
 if __name__ == "__main__":
-    mcp.run(transport="http", host="0.0.0.0", port=8000)
-    # mcp.run()
+    port = int(os.environ.get("PORT", 8000))
+    mcp.run(transport="http", host="0.0.0.0", port=port)
